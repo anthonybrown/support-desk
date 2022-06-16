@@ -10,7 +10,7 @@ import PrivateRoute from './components/PrivateRoute.js'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import Login from './pages/Login'
-import NewTicket from './pages/newTicket'
+import NewTicket from './pages/NewTicket'
 
 function App() {
   return (
