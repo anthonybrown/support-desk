@@ -1,14 +1,9 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  useParams,
-  useNaviagate,
-  useNavigate,
-} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import {
   getTicket,
   getTickets,
-  closeTicket,
   reset,
 } from '../features/tickets/ticketSlice'
 import { toast } from 'react-toastify'
@@ -20,7 +15,6 @@ function Ticket() {
     useSelector(state => state.tickets)
 
   const params = useParams()
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const { ticketId } = useParams()
 
@@ -37,14 +31,6 @@ function Ticket() {
   if (isError) {
     return <h3>Something went wrong 💩</h3>
   }
-
-  const handleTicketClose = () => {
-    dispatch(closeTicket(ticketId))
-    toast.success('Ticket Closed', { autoClose: 1500 })
-    navigate('/tickets')
-  }
-
-  if (isLoading) return <Spinner />
 
   return (
     <>
@@ -67,15 +53,6 @@ function Ticket() {
             <p>{ticket.description}</p>
           </div>
         </header>
-
-        {ticket.status !== 'closed' && (
-          <button
-            className="btn btn-block btn-danger"
-            onClick={handleTicketClose}
-          >
-            Close Ticket
-          </button>
-        )}
       </div>
     </>
   )
