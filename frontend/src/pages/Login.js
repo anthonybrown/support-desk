@@ -22,7 +22,7 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message, { autoClose: 1500 })
     }
 
     if (isSuccess || user) {

@@ -24,7 +24,7 @@ function Register() {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message, { autoClose: 1500 })
     }
 
     if (isSuccess || user) {
@@ -45,7 +45,7 @@ function Register() {
     e.preventDefault()
 
     if (password !== password2) {
-      toast.error('Passwords do not match')
+      toast.error('Passwords do not match', { autoClose: 1500 })
     } else {
       const userData = {
         name,
