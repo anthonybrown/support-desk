@@ -15,7 +15,6 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('Please include all fields')
   }
 
-  // find if user already exists
   const userExists = await User.findOne({ email })
 
   if (userExists) {
@@ -23,11 +22,9 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('User already exists')
   }
 
-  // hash password
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
 
-  // create user
   const user = await User.create({
     name,
     email,
@@ -55,7 +52,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email })
 
-  // check user and if passwords match
+  // check if user and if passwords match
   if (user && (await bcrypt.compare(password, user.password))) {
     res.status(200).json({
       _id: user._id,
@@ -81,9 +78,10 @@ const getMe = asyncHandler(async (req, res) => {
   res.status(200).json(user)
 })
 
+//***/ JWT generate token 🚀/***//
 const generateToken = id => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '30d',
+    expiresIn: '364d',
   })
 }
 

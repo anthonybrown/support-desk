@@ -9,6 +9,7 @@ import {
   getTicket,
   getTickets,
   closeTicket,
+  deleteTicket,
   reset,
 } from '../features/tickets/ticketSlice'
 import { toast } from 'react-toastify'
@@ -26,7 +27,7 @@ function Ticket() {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message, { autoClose: 1500 })
     }
 
     dispatch(getTicket(ticketId))
@@ -35,12 +36,18 @@ function Ticket() {
   if (isLoading) return <Spinner />
 
   if (isError) {
-    return <h3>Something went wrong 💩</h3>
+    return <h3>💩 Something went wrong</h3>
   }
 
   const handleTicketClose = () => {
     dispatch(closeTicket(ticketId))
-    toast.success('Ticket Closed', { autoClose: 1500 })
+    toast.success('Ticket Closed', { autoClose: 900 })
+    navigate('/tickets')
+  }
+
+  const handleTicketDelete = () => {
+    dispatch(deleteTicket(ticketId))
+    toast.success('Ticket Deleted', { autoClose: 1200 })
     navigate('/tickets')
   }
 
@@ -74,6 +81,14 @@ function Ticket() {
             onClick={handleTicketClose}
           >
             Close Ticket
+          </button>
+        )}
+        {ticket.status !== 'new' && (
+          <button
+            className="btn btn-block btn-danger"
+            onClick={handleTicketDelete}
+          >
+            Delete Ticket
           </button>
         )}
       </div>

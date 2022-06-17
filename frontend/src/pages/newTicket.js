@@ -22,10 +22,11 @@ function NewTicket() {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message, { autoClose: 900 })
     }
 
     if (isSuccess) {
+      toast.success('Ticket created 🎊', { autoClose: 900 })
       dispatch(reset())
       navigate('/tickets ')
     }
@@ -76,11 +77,14 @@ function NewTicket() {
               value={product}
               onChange={e => setProduct(e.target.value)}
             >
+              <option value="">please select a product</option>
               <option value="iPhone">iPhone</option>
               <option value="iPad">iPad</option>
-              <option value="Macbook Pro">Mackbook Pro</option>
-              <option value="airpods">Air Pods</option>
-              <option value="iMac">iMac</option>
+              <option value="Macbook Pro">MackBook Pro</option>
+              <option value="Macbook Pro">MackBook Air</option>
+              <option value="AirPods">Air Pods</option>
+              <option value="Apple Watch">Apple Watch</option>
+              <option value="AirTag">AirTag</option>
             </select>
           </div>
           <div className="form-group">
