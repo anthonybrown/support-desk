@@ -130,6 +130,7 @@ const deleteTicket = asyncHandler(async (req, res) => {
     throw new Error('Not authorized')
   }
 
+  // this is what deletes the ticket from the backend
   ticket.remove()
 
   res.status(200).json(ticket)
