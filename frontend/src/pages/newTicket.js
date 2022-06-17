@@ -81,7 +81,7 @@ function NewTicket() {
               <option value="iPhone">iPhone</option>
               <option value="iPad">iPad</option>
               <option value="MacBook Pro">MackBook Pro</option>
-              <option value="Macbook Air">MackBook Air</option>
+              <option value="MacBook Air">MackBook Air</option>
               <option value="AirPods">Air Pods</option>
               <option value="Apple Watch">Apple Watch</option>
               <option value="AirTag">AirTag</option>
