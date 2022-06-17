@@ -91,7 +91,7 @@ export const deleteTicket = createAsyncThunk(
   async (ticketId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
-      return await ticketService.closeTicket(ticketId, token)
+      return await ticketService.deleteTicket(ticketId, token)
     } catch (error) {
       const message =
         (error.response &&
@@ -159,13 +159,9 @@ export const ticketSlice = createSlice({
             : ticket,
         )
       })
-      .addCase(deleteTicket.fulfilled, (state, action) => {
+      .addCase(deleteTicket, (state, action) => {
         state.isLoading = false
-        state.tickets.map(ticket =>
-          ticket._id === action.payload._id
-            ? (ticket.status = 'deleted')
-            : ticket,
-        )
+        state.message = action.payload
       })
   },
 })

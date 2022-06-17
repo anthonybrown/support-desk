@@ -47,7 +47,7 @@ function Ticket() {
 
   const handleTicketDelete = () => {
     dispatch(deleteTicket(ticketId))
-    toast.success('Ticket Deleted', { autoClose: 1200 })
+    toast.success('Ticket Deleted', { autoClose: 901 })
     navigate('/tickets')
   }
 
